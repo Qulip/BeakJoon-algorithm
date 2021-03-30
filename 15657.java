@@ -1,17 +1,25 @@
-package beak15652;
+package beak15657;
 
 import java.io.*;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
     static StringBuilder sb = new StringBuilder();
     static int[] rst;
+    static int[] nums;
     public static void main(String[] args) throws IOException {
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(input.readLine());
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
         rst = new int[m];
+        st = new StringTokenizer(input.readLine());
+        nums = new int[n];
+        for(int i=0; i<n; i++){
+            nums[i]=Integer.parseInt(st.nextToken());
+        }
+        Arrays.sort(nums);
         dfs(n,m,1,0);
         System.out.print(sb);
     }
@@ -23,7 +31,7 @@ public class Main {
             sb.append("\n");
         }else{
             for(int i=at; i<=n; i++){
-                rst[time] = i;
+                rst[time] = nums[i-1];
                 dfs(n,m, at, time+1);
                 at++;
             }
