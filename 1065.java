@@ -20,11 +20,10 @@ public class Main {
                 nums[1] = (i%100)/10;
                 nums[2] = i%10;
                 int temp = nums[0] - nums[1];
-                if(nums[1]-temp>=10||nums[1]-temp<=0){
+                if(nums[1]-temp>=10||nums[1]-temp<0){
                     i = nums[0]*100+(nums[1]+1)*10;
                 } else if(temp == nums[1] - nums[2]){
                     result++;
-                    System.out.println("!");
                     i++;
                 } else {
                     i++;
@@ -32,7 +31,6 @@ public class Main {
                 if(i>n){
                     break;
                 }
-                System.out.println(i);
             }
             sb.append(result);
         }
