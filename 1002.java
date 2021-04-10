@@ -18,18 +18,18 @@ public class Main {
             y2 = Integer.parseInt(st.nextToken());
             r2 = Integer.parseInt(st.nextToken());
             double d = Math.sqrt(Math.pow(x2-x1,2)+Math.pow(y2-y1,2));      //점사이 거리
-            double r_m = r2-r1;                                             //r뺀거
+            double r_m = Math.abs(r2-r1);                                             //r뺀거
             double r_p = r2+r1;                                             //r더한거
             if(d==0){
-                if(r1==r2){
+                if(r1 == r2){
                     sb.append("-1\n");
                 }else{
                     sb.append("0\n");
                 }
             }else{
-                if(r_m<d && r_p>d){
+                if(r_m < d && d < r_p){
                     sb.append("2\n");
-                } else if(r_m==d||r_p==d){
+                } else if(r_m == d || r_p == d){
                     sb.append("1\n");
                 }else {
                     sb.append("0\n");
