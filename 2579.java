@@ -1,26 +1,28 @@
+package beak2579;
+
 import java.io.*;
-import java.util.StringTokenizer;
 
 public class Main {
-    static String input = "1 1 1\n"+
-            "2 2 2\n" +
-            "10 4 6\n" +
-            "50 50 50\n" +
-            "-1 7 18\n" +
-            "-1 -1 -1\n";
+
     public static void main(String[] args) throws IOException{
-        BufferedReader br = new BufferedReader(new StringReader(input));
-        StringBuilder sb = new StringBuilder();
-        while(true){
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            int a = Integer.parseInt(st.nextToken());
-            int b = Integer.parseInt(st.nextToken());
-            int c = Integer.parseInt(st.nextToken());
-            if(a==-1&&b==-1&&c==-1){
-                break;
-            }
-            if()
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int T = Integer.parseInt(br.readLine());
+        int[] stairs = new int[T];
+        for(int i = 0; i<T; i++){
+            stairs[i] = Integer.parseInt(br.readLine());
         }
-        System.out.println(sb);
+        int[] rst = new int[T];
+        rst[0] = stairs[0];
+        if(T>1) {
+            rst[1] = stairs[0] + stairs[1];
+        }
+        if(T>2) {
+            rst[2] = stairs[0] + stairs[2] > stairs[1] + stairs[2] ? stairs[0] + stairs[2] : stairs[1] + stairs[2];
+        }
+        for(int i=3; i<T; i++){
+            rst[i] = rst[i-2]+stairs[i]>rst[i-3]+stairs[i-1]+stairs[i] ? rst[i-2]+stairs[i]:rst[i-3]+stairs[i-1]+stairs[i];
+        }
+
+        System.out.println(rst[T-1]);
     }
 }
