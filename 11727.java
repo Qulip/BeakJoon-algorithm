@@ -4,10 +4,9 @@ import java.io.*;
 
 public class Main {
     public static void main(String[] args) throws IOException{
-        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-        int length = Integer.parseInt(bf.readLine());
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int length = Integer.parseInt(br.readLine());
 
-        //bottom-up
         int d[] = new int[length+1];
         d[0] = 1;
         d[1] = 1;
