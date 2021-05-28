@@ -1,9 +1,92 @@
-package beak1753;
+package beak1753;       //나중에 다시 풀어보기
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
+public class Main {
+    static int v,e,k;
+    static ArrayList<beak1753.Node>[] list;
+    static int[] dist;
+
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        StringBuilder sb = new StringBuilder();
+        v = Integer.parseInt(st.nextToken());
+        e = Integer.parseInt(st.nextToken());
+        k = Integer.parseInt(br.readLine());
+
+        list = new ArrayList[v + 1];
+        dist = new int[v + 1];
+
+        Arrays.fill(dist, 3000000);     //MAX_VALUE 사용시 오버플로우
+
+        for(int i = 1; i <= v; i++){
+            list[i] = new ArrayList<>();    //그래프 정보 초기화
+        }
+
+        for(int i = 0 ; i < e; i++){
+            st = new StringTokenizer(br.readLine());
+            int start = Integer.parseInt(st.nextToken());
+            int end = Integer.parseInt(st.nextToken());
+            int weight = Integer.parseInt(st.nextToken());
+            list[start].add(new beak1753.Node(end, weight));
+        }
+
+        dijkstra(k);
+
+        for(int i = 1; i <= v; i++){
+            if(dist[i] == 3000000) sb.append("INF\n");
+            else sb.append(dist[i] + "\n");
+        }
+
+        System.out.println(sb);
+    }
+
+    private static void dijkstra(int start) {
+        PriorityQueue<beak1753.Node> queue = new PriorityQueue<>();
+        boolean[] check = new boolean[v + 1];
+        queue.add(new beak1753.Node(start, 0));
+        dist[start] = 0;
+
+        while (!queue.isEmpty()) {
+            beak1753.Node curNode = queue.poll();
+            int cur = curNode.end;
+
+            if (check[cur]) {
+                continue;
+            }
+            check[cur] = true;
+
+            for (beak1753.Node node : list[cur]) {
+                if (dist[node.end] > dist[cur] + node.weight) {
+                    dist[node.end] = dist[cur] + node.weight;
+                    queue.add(new beak1753.Node(node.end, dist[node.end]));
+                }
+            }
+        }
+    }
+}
+
+class Node implements Comparable<beak1753.Node>{
+
+    int end, weight;
+
+    Node(int x, int y){
+        end = x;
+        weight = y;
+    }
+
+    @Override
+    public int compareTo(beak1753.Node o) {
+        return this.weight - o.weight;
+    }
+}
+
+/*
 public class Main {
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -13,9 +96,8 @@ public class Main {
         int e = Integer.parseInt(st.nextToken());
         int k = Integer.parseInt(br.readLine());
         int[][] ways = new int[v+1][v+1];
-        int[] k_ways = new int[v+1];
         for(int i=1; i<=v; i++) {
-            Arrays.fill(ways[i], Integer.MAX_VALUE);               //두점 사이 거리가 10이하의 자연수라 11로 채움
+            Arrays.fill(ways[i], 3000000);
             ways[i][i] = 0;
         }
         for(int i=0; i<e; i++){
@@ -27,7 +109,6 @@ public class Main {
                 ways[start][finish]=dist;
             }
         }
-        k_ways = ways[k];
         int num = 1;
         int next_point = 0;
         boolean[] chk = new boolean[v+1];
@@ -48,19 +129,8 @@ public class Main {
             }
             num++;
         }
-        /*for(int i=1; i<=v; i++){
-            for(int j=1; j<=v; j++){
-                for(int l=1; l<=v; l++){
-                    ways[j][l] = Math.min(ways[j][l], ways[j][i]+ways[i][l]);
-                }
-            }
-        }
-        //메모리부족
-        */for(int i=1; i<=v; i++){
-            System.out.print(k_ways[i]+" ");
-        }
         for(int i=1; i<=v;i++){
-            if(ways[k][i]==11){
+            if(ways[k][i]==3000000){
                 sb.append("INF\n");
             }else{
                 sb.append(ways[k][i]+"\n");
@@ -69,7 +139,6 @@ public class Main {
         System.out.println(sb);
     }
 }
-/*
 5 6
 1
 5 1 1
