@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class Main {
     static ArrayList[] ways;
+    static int[] nodes;
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -14,7 +15,7 @@ public class Main {
         int m = Integer.parseInt(st.nextToken());
         int k = Integer.parseInt(st.nextToken());
         int x = Integer.parseInt(st.nextToken());
-        int[] nodes = new int[n+1];
+        nodes = new int[n+1];
         Arrays.fill(nodes,Integer.MAX_VALUE);
         nodes[x] = 0;
         for(int i=0; i<=n; i++){
@@ -28,4 +29,5 @@ public class Main {
         }
 
     }
+    public static dijikstra(int )
 }
