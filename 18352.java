@@ -2,12 +2,14 @@ package beak18352;
 
 import java.io.*;
 import java.util.Arrays;
+import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 import java.util.ArrayList;
 
 public class Main {
     static ArrayList[] ways;
     static int[] nodes;
+    static StringBuilder sb = new StringBuilder();
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -27,7 +29,19 @@ public class Main {
             int end = Integer.parseInt(st.nextToken());
             ways[start].add(end);
         }
-
+        dijikstra(x, k);
     }
-    public static dijikstra(int )
+    public static void dijikstra(int start, int finish){
+        int now_length = 1;
+        PriorityQueue<Integer> next = new PriorityQueue<>();
+        next.add(start);
+        while(true){
+            for(int i=0; i<next.size(); i++) {
+                int next_node = next.poll();
+                for (int j = 0; j < ways[next_node].size(); j++) {
+
+                }
+            }
+        }
+    }
 }
