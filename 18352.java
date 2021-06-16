@@ -1,10 +1,7 @@
 package beak18352;
 
 import java.io.*;
-import java.util.Arrays;
-import java.util.PriorityQueue;
-import java.util.StringTokenizer;
-import java.util.ArrayList;
+import java.util.*;
 
 public class Main {
     static ArrayList[] ways;
@@ -33,7 +30,7 @@ public class Main {
     }
     public static void dijikstra(int start, int finish){
         int now_length = 1;
-        PriorityQueue<Integer> next = new PriorityQueue<>();
+        Queue<Integer> next = new LinkedList<>();
         next.add(start);
         while(true){
             for(int i=0; i<next.size(); i++) {
