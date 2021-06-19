@@ -33,12 +33,16 @@ public class Main {
         Queue<Integer> next = new LinkedList<>();
         next.add(start);
         while(true){
-            for(int i=0; i<next.size(); i++) {
+            int nodes = next.size();
+            for(int i=0; i<nodes; i++) {
                 int next_node = next.poll();
                 for (int j = 0; j < ways[next_node].size(); j++) {
-
+                    int k = ways[next_node].get(j);
+                    next.add(k);
+                    nodes[k] = now_length;
                 }
             }
+            now_length++;
         }
     }
 }
