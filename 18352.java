@@ -17,6 +17,7 @@ public class Main {
         nodes = new int[n+1];
         Arrays.fill(nodes,Integer.MAX_VALUE);
         nodes[x] = 0;
+        ways = new ArrayList[n+1];
         for(int i=0; i<=n; i++){
             ways[i] = new ArrayList<Integer>();
         }
@@ -27,20 +28,32 @@ public class Main {
             ways[start].add(end);
         }
         dijikstra(x, k);
+        System.out.println(sb);
     }
     public static void dijikstra(int start, int finish){
         int now_length = 1;
         Queue<Integer> next = new LinkedList<>();
         next.add(start);
         while(true){
-            int nodes = next.size();
-            for(int i=0; i<nodes; i++) {
+            int node_sizes = next.size();
+            for(int i=0; i<node_sizes; i++) {
                 int next_node = next.poll();
                 for (int j = 0; j < ways[next_node].size(); j++) {
-                    int k = ways[next_node].get(j);
+                    int k = (int) ways[next_node].get(j);
                     next.add(k);
-                    nodes[k] = now_length;
+                    nodes[j] = now_length;
                 }
+            }
+            if(finish==now_length){
+                if(next.size()==0){
+                    sb.append("-1");
+                }else{
+                    while(next.size()!=0){
+                        int next_node = next.poll();
+                        sb.append(next_node+"\n");
+                    }
+                }
+                break;
             }
             now_length++;
         }
