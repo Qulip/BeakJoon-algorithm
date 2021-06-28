@@ -28,7 +28,17 @@ public class Main {
             ways[start].add(end);
         }
         dijikstra(x, k);
-        System.out.println(sb);
+        boolean chk = true;
+        for(int i=1; i<=nodes.length; i++){
+            if(nodes[i]==k){
+                sb.append(i+"\n");
+            }
+        }
+        if(chk) {
+            System.out.println(sb);
+        } else {
+            System.out.println("-1");
+        }
     }
     public static void dijikstra(int start, int finish){
         int now_length = 1;
@@ -43,7 +53,7 @@ public class Main {
                     next.add(k);
                     nodes[j] = now_length;
                 }
-            }
+            }/*
             if(finish==now_length){
                 if(next.size()==0){
                     sb.append("-1");
@@ -54,7 +64,7 @@ public class Main {
                     }
                 }
                 break;
-            }
+            }*/
             now_length++;
         }
     }
@@ -68,9 +78,9 @@ ex1
 2 3
 2 4
 
-out
-4
-
+out  now
+4    4
+     3
 ex2
 4 3 2 1
 1 2
