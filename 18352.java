@@ -40,7 +40,7 @@ public class Main {
             System.out.println("-1");
         }
     }
-    public static void dijikstra(int start, int finish){
+    public static void dijikstra(int start, int finish){//비교하고 값을 추가하기
         int now_length = 1;
         Queue<Integer> next = new LinkedList<>();
         next.add(start);
