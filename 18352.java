@@ -28,8 +28,8 @@ public class Main {
             ways[start].add(end);
         }
         dijikstra(x, k);
-        boolean chk = true;
-        for(int i=1; i<=nodes.length; i++){
+        boolean chk = true;/*
+        for(int i=1; i<nodes.length; i++){
             if(nodes[i]==k){
                 sb.append(i+"\n");
             }
@@ -38,7 +38,8 @@ public class Main {
             System.out.println(sb);
         } else {
             System.out.println("-1");
-        }
+        }*/
+        System.out.println(sb);
     }
     public static void dijikstra(int start, int finish){//비교하고 값을 추가하기
         int now_length = 1;
@@ -50,10 +51,12 @@ public class Main {
                 int next_node = next.poll();
                 for (int j = 0; j < ways[next_node].size(); j++) {
                     int k = (int) ways[next_node].get(j);
-                    next.add(k);
-                    nodes[j] = now_length;
+                    if(nodes[k]>now_length) {
+                        next.add(k);
+                        nodes[j] = now_length;
+                    }
                 }
-            }/*
+            }
             if(finish==now_length){
                 if(next.size()==0){
                     sb.append("-1");
@@ -64,7 +67,7 @@ public class Main {
                     }
                 }
                 break;
-            }*/
+            }
             now_length++;
         }
     }
