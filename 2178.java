@@ -7,6 +7,7 @@ public class Main {
     static int rst;
     static int row_max;
     static int col_max;
+    static boolean[][] visited;
     static boolean[][] map;
 
     public static void main(String[] args) throws IOException {
@@ -35,6 +36,25 @@ public class Main {
     }
     static public void bfs(int row, int col){
         Queue<int[]> que = new LinkedList<>();
+        que.add(new int[]{row, col});
+        while (!que.isEmpty()){
+            int now[] = que.poll();
+            int nowX = now[0];
+            int nowY = now[1];
+            for(int i=0; i<4; i++) {
+                int nextX = nowX + dx[i];
+                int nextY = nowY + dy[i];
+
+                if (nextX < 0 || nextY < 0 || nextX >= n || nextY >= m)
+                    continue;
+                if (visited[nextX][nextY] || map[nextX][nextY] == 0)
+                    continue;
+
+                q.add(new int[] {nextX, nextY});
+                map[nextX][nextY] = map[nowX][nowY] + 1;
+                visited[nextX][nextY] = true;
+            }
+        }
     }
 }
 /*      BFS Time Over
