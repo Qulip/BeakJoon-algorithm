@@ -19,5 +19,19 @@ public class Main {
                 map[i][j] = tmp.charAt(j)-'0';
             }
         }
+        bfs(0,0);
+    }
+    public static void bfs(int n, int y){
+        Queue<int[]> q = new LinkedList<>();
+        q.add(new int[]{0,0});
+        while(!q.isEmpty()){
+            int[] now = q.poll();
+            int nowX = now[0];
+            int nowY = now[1];
+            if(visited[nowX][nowY]){
+                return;
+            }
+
+        }
     }
 }
