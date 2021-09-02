@@ -7,13 +7,14 @@ public class Main {
     static int m;
     static int n;
     static int[][] map;
+    static boolean[][] visited;
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         m = Integer.parseInt(st.nextToken());
         n = Integer.parseInt(st.nextToken());
         map = new int[n][m];
-
+        visited = new boolean[n][m];
         for(int i=0; i<n; i++){
             st = new StringTokenizer(br.readLine());
             for(int j=0; j<m; j++){
@@ -26,6 +27,9 @@ public class Main {
             }
             System.out.println();
         }
+    }
+    public void bfs(int x, int y){
+
     }
 }
 /*
