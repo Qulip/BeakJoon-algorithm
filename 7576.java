@@ -1,6 +1,8 @@
 package beak7576;
 
 import java.io.*;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -29,6 +31,7 @@ public class Main {
         }
     }
     public void bfs(int x, int y){
+        Queue<int[]> q = new LinkedList<>();
 
     }
 }
