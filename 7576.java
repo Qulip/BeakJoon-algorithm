@@ -23,16 +23,20 @@ public class Main {
                 map[i][j] = Integer.parseInt(st.nextToken());
             }
         }
-        for(int i=0; i<n; i++){
-            for(int j=0; j<m; j++){
-                System.out.print(map[i][j]+" ");
-            }
-            System.out.println();
-        }
+
     }
     public void bfs(int x, int y){
         Queue<int[]> q = new LinkedList<>();
+        q.add(new int[]{x,y});
+        while(!q.isEmpty()){
+            int[] tmp = q.poll();
+            int now_X = tmp[0];
+            int now_Y = tmp[1];
+            if(map[now_X][now_Y]==1||!visited[now_X][now_Y]){
 
+            }
+
+        }
     }
 }
 /*
