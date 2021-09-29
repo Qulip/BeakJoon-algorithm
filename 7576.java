@@ -14,7 +14,7 @@ public class Main {
         int M = Integer.parseInt(str[0]);
         int N = Integer.parseInt(str[1]);
 
-        int[][] arr = new int[N][M];
+        int[][] arr = new int[N][M];    //위치별 일수
 
         for (int i = 0; i < N; i++) {
             str = br.readLine().split(" ");
