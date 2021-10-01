@@ -22,7 +22,7 @@ public class Main {
         if(dist ==0){
             best = Math.min(best, time);
             return;
-        }
+        }//여기 수정 필요
         if(!(dist<Math.abs(y-x*2))){
             DFS(x*2, y, time+1);
         }
