@@ -1,36 +1,57 @@
 package beak1697;
 
 import java.io.*;
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.StringTokenizer;
 
 public class Main {
+    static int N;
+    static int K;
+    static int[] check = new int[100001];
 
-    static int best;
-
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        int x = Integer.parseInt(st.nextToken());
-        int y = Integer.parseInt(st.nextToken());
-        best = Integer.MAX_VALUE;
-        DFS(x,y,0);
-        System.out.println(best);
+        StringTokenizer st  = new StringTokenizer(br.readLine());
+        N = Integer.parseInt(st.nextToken());
+        K = Integer.parseInt(st.nextToken());
+
+        if (N == K) {
+            System.out.println(0);
+        } else {
+            bfs(N);
+        }
     }
 
-    public static void DFS(int x, int y, int time){
-        int dist = Math.abs(y-x);
-        if(dist ==0){
-            best = Math.min(best, time);
-            return;
-        }//여기 수정 필요
-        if(!(dist<Math.abs(y-x*2))){
-            DFS(x*2, y, time+1);
-        }
-        if(!(dist<Math.abs(y-x-1))) {
-            DFS(x + 1, y, time + 1);
-        }
-        if(!(dist<Math.abs(y-x+1))) {
-            DFS(x - 1, y, time + 1);
+    static void bfs(int num) {
+        Queue<Integer> q = new LinkedList<>();
+        q.add(num);
+        check[num] = 1;
+
+        while (!q.isEmpty()) {
+            int temp = q.poll();
+
+            for (int i = 0; i < 3; i++) {
+                int next;
+
+                if (i == 0) {
+                    next = temp + 1;
+                } else if (i == 1) {
+                    next = temp - 1;
+                } else {
+                    next = temp * 2;
+                }
+
+                if (next == K) {
+                    System.out.println(check[temp]);
+                    return;
+                }
+
+                if (next >= 0 && next < check.length && check[next] == 0) {
+                    q.add(next);
+                    check[next] = check[temp] + 1;
+                }
+            }
         }
     }
 }
