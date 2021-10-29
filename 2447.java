@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
 
+//재검토 필요
+
 public class Main {
     static char[][] arr;
 
